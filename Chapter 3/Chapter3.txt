@@ -1,0 +1,65 @@
+1. Power Apps global variable:
+
+OnSelect = Set(varGlobal,txtEnterLocation.Text)
+Text = varGlobal
+
+---------------------------------------------------------------------------------------------------------------------
+
+2. Power Apps context variable:
+
+OnSelect = UpdateContext({varContext:txtEnterProduct.Text})
+Text = varContext
+
+---------------------------------------------------------------------------------------------------------------------
+
+3. Power Apps collections:
+
+OnSelect = Collect(colCarRegInfo,{RegistrationNumber:txtRegNo.Text, RegistrationDate:dtRegDate.SelectedDate, OwnerName:txtOwner.Text, Fuel:ddFuel.Selected.Value})
+Items = colCarRegInfo
+OnSelect = Remove(colCarRegInfo, ThisItem)
+
+---------------------------------------------------------------------------------------------------------------------
+
+4. Power Apps functions:
+
+Patch:
+OnSelect = Patch('Scheduled Events', Defaults('Scheduled Events'), {Title: "Winter Get-together", Department: ddDepartment.Selected, 'Start Date': Date(2022,3,25), 'End Date': Date(2022,3,26)});
+
+Collect:
+Example - 1:
+OnSelect = Collect(colPatientDetails, {PatientName:txtPatientName.Text, DOB:dtDOB.SelectedDate, Gender:rdGender.Selected.Value, Phone:txtPhone.Text, Country:ddCountry.Selected.Value})
+Example - 2:
+OnStart = Collect(EventCollection,'Scheduled Events')
+
+Update:
+OnSelect = UpdateIf(‘Scheduled Events’, ID > 3, {Title:  “Monthly Team Meeting”})
+
+Filter:
+Items = Choices('Scheduled Events'.Department)
+Items = Choices('Scheduled Events'.Location)
+Items = Filter(‘Scheduled Events’,Department.Value=ddEventDepartment.Selected.Value, Location.Value=ddEventLocation.Selected.Value)
+
+Date:
+Text = "Full Date: "& Date (Value(txtYear.Text), Value(txtMonth.Text), Value(txtDay.Text))
+
+Serch:
+Onselect = UpdateContext({searchPhrase: txtSearchEvent.Text})
+Items = Search ('Scheduled Events', searchPhrase, "Title")
+
+LookUp:
+Items = LookUp('Scheduled Events', Title = "Social Media Strategy", Department)
+
+Navigate:
+OnSelect = Navigate('Success Screen', ScreenTransition.Fade)
+
+Sort:
+Items = Sort( EventCollection, Title, SortOrder.Descending )
+Items = SortByColumns( EventCollection, "Title", ["Social Media Strategy", "Product Strategy Workshop"])
+
+Switch:
+Text = Switch (Slider2.Value, 30, "VERY BAD", 40, "BAD", 50, "AVERAGE", 60, "GOOD", 70, "VERY GOOD", 80, "EXCELLENT", 0, "FAIL")
+
+Table:
+Items = Table ({Gadget:"Laptop", Color:"Black", Price:"70000"}, {Gadget:"Mobile", Color:"White", Price:"50000"}, {Gadget:"Tablet", Color:"Grey", Price:"45000"})
+
+------------------------------------------------------------------------------------------------------------------------

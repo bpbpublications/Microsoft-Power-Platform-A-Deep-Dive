@@ -1,0 +1,92 @@
+1. Various Power Apps control examples
+
+Button:
+OnSelect = Reset(txtEnterText)
+
+Label:
+Text = "Congratulations!! You successfully created a new account"
+
+Text input:
+Visible = If(txtEnterName.Text="Preeti", true)
+
+Drop-down:
+Items = ["AMERICA", "AUSTRALIA", "BRAZIL", "CANADA", "DENMARK", "FRANCE", "GERMANY"]
+Example - 1:
+Items = Choices(Products.Status)
+Example - 2:
+Items = Distinct(Products,Title)
+
+Combo box:
+Items = Choices('Scheduled Events'.'Event Manager')
+Items = Filter('Scheduled Events',If(IsBlank(cbSearchManager.Selected.DisplayName), true, 'Event Manager' in cbSearchManager.SelectedItems))
+
+Date picker:
+Items = Filter('Scheduled Events',('Start Date'>=dtStartDate.SelectedDate Or IsBlank(dtStartDate.SelectedDate)) And ('StartDate'<DateAdd(dtEndDate.SelectedDate,1,Days) Or IsBlank(dtEndDate.SelectedDate)))
+
+List box:
+Items = ["Devid", "Ronald", "Marie", "Smith", "Jack"]
+Text = "List Box Selected Item: " & lbNames.Selected.Value
+
+Check box:
+DisplayMode = If(cbSelect.Value=true,Edit,Disabled)
+
+Radio:
+Items = Choices([@'Job Seekers Registration List'].Gender)
+Items = Filter('Job Seekers Registration List',Gender.Value=rdSelectGender.Selected.Value)
+
+Toggle:
+Items = If(tgSelect.Value,Filter('Job Seekers Registration List',Status.Value="Approved"),'Job Seekers Registration List')
+
+Slider:
+OnChange = UpdateContext({slideValue: Value(txtEnterValue.Text)})
+Default = Text(slideValue)
+OnChange = UpdateContext({slideValue: Slider1.Value})
+Default = Value(slideValue)
+
+Container:
+OnVisible = Set(varContainerValue,false)
+OnSelect = Set(varContainerValue, true)
+Visible = varContainerValue
+
+Timer:
+OnSelect = UpdateContext({ResetTimer: false}); Reset(Timer1); UpdateContext({ResetTimer: true})
+
+Image:
+Example - 2:
+Items = 'Book Images'
+Image = ThisItem.'Link to item'
+
+Audio and video:
+Example - 3:
+Media = “https://www.youtube.com/watch?v=lU5OTR_V93k”
+
+Gallery:
+Vertical:
+Items = ‘Book Images’
+Image = ThisItem.'Link to item'
+Horizontal:
+Items = ‘Book Images’
+Image = ThisItem.'Link to item'
+Text = ThisItem.Name
+Flexible height:
+Items = ‘Book Images’
+Image = ThisItem.'Link to item'
+
+Data table:
+Items = Choices ('Scheduled Events'.Department).Value
+Items = Filter ('Scheduled Events',ddSelectDepartment.Selected.Value in Department.Value)
+
+Charts:
+Column chart:
+Items = ‘Job Seekers Registration List’
+Line chart:
+Items = 'Job Seekers Registration List'
+Pie chart:
+Items = 'Job Seekers Registration List'.'12th Percentage'
+Items = 'Job Seekers Registration List'.Title
+
+Power BI tile:
+TileUrl = https://app.powerbi.com/embed?dashboardId=8d8bce5f-4908-4fe0-995e-f8dcc26e43b5&tileId=8a1111b2-60d4-4edd-9b06-394f99adce59&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUlORElBLUNFTlRSQUwtQS1QUklNQVJZLXJlZGlyZWN0LmFuYWx5c2lzLndpbmRvd3MubmV0IiwiZW1iZWRGZWF0dXJlcyI6eyJtb2Rlcm5FbWJlZCI6ZmFsc2V9fQ%3d%3d
+
+
+-------------------------------------------------------------------------------------------------------------------------------------

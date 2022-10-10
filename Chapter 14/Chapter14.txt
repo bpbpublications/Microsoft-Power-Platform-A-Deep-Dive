@@ -1,0 +1,20 @@
+1. Conditional formatting on background color by field value:
+Sales =  
+
+SWITCH ( 
+
+    TRUE (),  
+
+    SUM('Dim-Sales'[Sales])>200000,"Light Green", 
+
+    SUM('Dim-Sales'[Sales])>180000,"Orange", 
+
+    SUM('Dim-Sales'[Sales])>150000,"Yellow", 
+
+    SUM('Dim-Sales'[Sales]) <120000,"Pink", 
+
+    "Sky Blue" 
+
+) 
+
+---------------------------------------------------------------------------------------------------

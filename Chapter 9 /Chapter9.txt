@@ -1,0 +1,90 @@
+1. Power Automate Flow Expression:
+
+toLower(‘<sample string>’) 
+toLower(‘POWER AUTOMATE’) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Conversion of data types:
+
+int(triggerBody()['text']) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Power Automate conditional flow:
+
+Title contains Power Automate 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Append an array variable and a string variable:
+
+[“Pennsylvania”, “Maryland”, “New York”, “Washington”]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Loops: (Example-1)
+
+ ["PENENNSYLVANIA", "MARYLAND", "WASHINGTON"])
+ toLower(item()) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Working with String functions:
+
+concat(‘Power’, ‘ ’, ‘Automate’) 
+replace ('Power Automate', 'Automate', 'BI')
+split('Hello!Have a good day','!')
+guid() 
+toUpper('welcome to the automation world')
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Working with collection functions:
+
+contains('Welcome to Automation world','world') 
+length('Power Automate')
+empty('abc')
+first('Automation')
+join(createArray('Power Automate', 'Power BI', 'Power Apps', 'Power Virtual Agent'),'**')
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Working with Math functions:
+
+min(15,12.3) 
+add(10.5,2.6)
+sub(100,25)
+mul(15,2)
+range(3,5)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9. Conversion function in Power Automate:
+
+json('{"Name": "Robort", "Contact": "123052360", "email": "Robort@outlook.com"}') 
+int('250')
+string(550)
+base64('Hello')
+createArray('Maryland','Ottawa','Vancouver','New Jersey')
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10. Logical function in Power Automate:
+
+equals(12.3,12.3) 
+not(true) 
+and(equals(5,5),not(false))
+lessOrEquals(35,35) 
+greater(73.2,75) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. Date and time Function in Power Automate:
+
+formatDateTime(utcNow(),'dd-MMMM-yy') 
+addMinutes(utcNow(),5,'o')
+convertTimeZone(utcNow(),'India Standard Time','Pacific Standard Time') 
+dayOfYear(utcNow()) 
+ticks(utcNow()) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. Referencing Functions in Power Automate:
+
+formatDateTime(utcNow(),'dd/MM/yyyy') 
+actions('Initialize_variable') 
+outputs('Current_Date')  
+Variables(‘VarObject’) 
+triggerBody()
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

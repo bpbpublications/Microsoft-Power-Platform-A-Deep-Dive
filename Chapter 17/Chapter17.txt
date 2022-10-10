@@ -1,0 +1,7 @@
+1. Page level Security:
+
+Page Naviagtion = SELECTEDVALUE (Navigation [Page name])
+Button = "Click to go " & [Page Navigation] &" page"
+[Users] = userprincipalname()
+
+----------------------------------------------------------------------------------

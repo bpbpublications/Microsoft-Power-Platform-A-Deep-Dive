@@ -1,0 +1,23 @@
+1. Configuring the Trigger condition:
+
+@equals(triggerOutputs(‘?['body/AssignedTo/DisplayName’],'User3') 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Get Items (SharePoint):
+
+Status eq 'Completed' 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Send an HTTP request to SharePoint:
+
+Uri:
+ 	_api/web/Lists/
+
+Headers:
+	accept            = application/json;odata=verbose 
+	content-type  = application/json;odata=verbose 
+
+Body:
+	{ '__metadata': { 'type': 'SP.List' }, 'AllowContentTypes': true, 'BaseTemplate': 100, 'ContentTypesEnabled': true, 'Description': 'My list description', 'Title': 'Power Platform Guides' } 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

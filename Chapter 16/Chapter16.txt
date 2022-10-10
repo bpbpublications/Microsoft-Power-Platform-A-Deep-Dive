@@ -1,0 +1,284 @@
+1. Power BI DAX Function:
+
+Aggregation Functions:
+
+Sum Function:
+
+Example: SUM('SuperStoreUS-2015-'[Sales]) 
+-----------------------------------------------------------------
+COUNT function:
+
+Example: COUNT ('SuperStoreUS-2015-'[Order ID]) 
+-----------------------------------------------------------------
+DISTINCTCOUNT Function:
+
+Example: DISTINCTCOUNT ('SuperStoreUS-2015-'[Order ID]) 
+-----------------------------------------------------------------
+AVERAGE Function:
+
+Example: AVERAGE('SuperStoreUS-2015-'[Sales]) 
+-----------------------------------------------------------------
+MIN Function: 
+
+Example: MIN('SuperStoreUS-2015-'[Sales]) 
+-----------------------------------------------------------------
+SUMX Function:
+
+Example: SUMX(FILTER('SuperStoreUS-2015-','SuperStoreUS-2015-'[Region]="Central"), 
+SUM('SuperStoreUS-2015-'[Sales])) 
+-----------------------------------------------------------------
+AVERAGEX Function: 
+
+Example: AVERAGEX (FILTER('SuperStoreUS-2015-','SuperStoreUS-2015-'[Region] ="Central"), 
+SUM('SuperStoreUS-2015-'[Sales])) 
+------------------------------------------------------------------
+COUNTX Function: 
+
+Example: COUNTX ('SuperStoreUS-2015-', SUM('SuperStoreUS-2015-'[Sales])) 
+------------------------------------------------------------------
+COUNTAX Function:
+
+Example: COUNTAX (FILTER ('SuperStoreUS-2015-','SuperStoreUS-2015-'[Order Priority] = "High"), 
+SUM('SuperStoreUS-2015-'[Profit]))  
+------------------------------------------------------------------
+Date and Time functions
+
+YEAR Function:
+
+Example: To get the current year: YEAR(TODAY()) 
+------------------------------------------------------------------
+TODAY Function:
+Example:Year (Today ())-1997 
+-------------------------------------------------------------------
+UTCNOW Function:
+ 
+Example:FORMAT(UTCNOW(),"yyyy-MM-dd") 
+-------------------------------------------------------------------
+DATEDIFF Function:
+ 
+Example:DATEDIFF (MIN ('SuperStoreUS-2015-'[Order Date]),
+ MAX ('SuperStoreUS-2015-'[Ship Date]), DAY) 
+--------------------------------------------------------------------
+DATE Function:
+ 
+Example:DATE (2022,12,11) 
+--------------------------------------------------------------------
+DAY Function: 
+
+Example:DAY (UTCTODAY ())  
+--------------------------------------------------------------------
+NOW Function: 
+
+Example:NOW ()-1 
+---------------------------------------------------------------------
+MONTH Function: 
+
+Example:MONTH ("04-12-2022") 
+---------------------------------------------------------------------
+WEEKDAY Function:
+
+Example:WEEKDAY ("4/12/2022",1) 
+--------------------------------------------------------------------
+QUARTER Function: 
+
+Example:QUARTER ("4/12/2022") 
+--------------------------------------------------------------------
+Filter Functions
+
+CALCULATE Function:
+
+Example: CALCULATE(SUM('SuperStoreUS-2015-'[Sales]),
+'SuperStoreUS-2015-'[Product Category] = "Furniture") 
+--------------------------------------------------------------------
+FILTER Function:
+
+Example: var Filtered= 
+
+FILTER ('SuperStoreUS-2015-','SuperStoreUS-2015-'[Product Category] = "Furniture") 
+
+return 
+
+CALCULATE ( 
+
+    SUM('SuperStoreUS-2015-'[Sales]), 
+
+    Filtered) 
+------------------------------------------------------------------
+ALLEXECPT Function: 
+
+Example:CALCULATE(SUM('SuperStoreUS-2015-'[Sales]),
+ ALLEXCEPT ('SuperStoreUS-2015-','SuperStoreUS-2015-'[Product Category]))
+-------------------------------------------------------------------
+REMOVEFILTER Function:
+
+Example:CALCULATE(SUM('SuperStoreUS-2015-'[Sales]), REMOVEFILTERS('SuperStoreUS-2015-')) 
+--------------------------------------------------------------------
+ALL Function: 
+
+Example:CALCULATE(SUM('SuperStoreUS-2015-'[Sales]), ALL('SuperStoreUS-2015-')) 
+--------------------------------------------------------------------
+KEEPFILTERS Function: 
+
+Example:CALCULATE ( 
+
+    Sum('SuperStoreUS-2015-'[Profit]), 
+
+    KEEPFILTERS ('SuperStoreUS-2015-'[Region]= "West")) 
+---------------------------------------------------------------------
+CALCULATETABLE Function: 
+
+Example: SUMX (CALCULATETABLE ('SuperStoreUS-2015-','SuperStoreUS-2015-'[Product Category] ="Technology"), 
+SUM('SuperStoreUS-2015-'[Profit])) 
+---------------------------------------------------------------------
+ALLSELECTED Function: 
+
+Example: Calculate (Sum('SuperStoreUS-2015-'[Profit]), 
+ALLSELECTED('SuperStoreUS-2015-'[Product Category])) 
+----------------------------------------------------------------------
+LOOKUPVALUE Function: 
+
+Example: LOOKUPVALUE ('SuperStoreUS-2015-'[Product Name],'SuperStoreUS-2015-'[Order ID],359) 
+-----------------------------------------------------------------------
+Logical Functions:
+
+AND Function:
+
+Example: IF (AND ((11>9), (12<20)),"True", "False") 
+-----------------------------------------------------------------------
+IF Function:
+
+Example: IF (11<12,"Greater","Smaller") 
+-----------------------------------------------------------------------
+SWITCH Function:
+
+Example: SWITCH([Month], 1, "Jan", 2, "Feb", 3, "March", 4, "April", 5, "May", 6, "June", 7, "July", 8, "Aug", 9, "Sept", 10, "Oct", 11, "Nov", 12, "Dec" , "Out of range")  
+----------------------------------------------------------------------
+OR Function:
+
+Example: IF (OR ((12<13), (22<12)), TRUE (), FALSE ())
+----------------------------------------------------------------------
+BITAND function:
+
+Example: BITAND (13,12); 
+----------------------------------------------------------------------
+NOT Function:
+
+Example:Calculate(Sum('SuperStoreUS-2015-'[Sales]),FILTER('SuperStoreUS-2015-',NOT('SuperStoreUS-2015-'[Product Category] IN {"Furniture","Technology"})))
+----------------------------------------------------------------------
+TRUE Function:
+
+Example: IF(SUM('SuperStoreUS-2015-'[Profit]) >200000, TRUE (), False ())  
+----------------------------------------------------------------------
+FALSE Function:
+
+Example:IF(SUM('SuperStoreUS-2015-'[Profit]) >200000, TRUE (), false ()) 
+----------------------------------------------------------------------
+IFERROR Function:
+
+Example: IFERROR (28/0, 88888)
+----------------------------------------------------------------------
+BITOR Function:
+
+Example: BITAND (3,5)
+---------------------------------------------------------------------
+TEXT Function
+
+CONCATENATE Function
+Example: CONCATENATE ("Power", "Automate"); 
+---------------------------------------------------------------------
+FORMAT Function:
+
+Example: FORMAT (UTCNOW (), "yyyy-MM-dd"); Output: 2022:03:29
+---------------------------------------------------------------------
+REPLACE Function:
+
+Example: REPLACE ("Power Automate", 7,10,"BI")
+-----------------------------------------------------------------------
+SEARCH Function:
+
+Example: SEARCH ("BI","Power BI",1, BLANK ()); 
+-----------------------------------------------------------------------
+LEN Function:
+
+Example: LEN ("Power Automate"); 
+-----------------------------------------------------------------------
+EXACT Function:
+
+Example: EXACT("Power BI","Power Automate")
+-----------------------------------------------------------------------
+TRIM Function:
+
+Example: TRIM("A column contain spaces .   ")
+-----------------------------------------------------------------------
+UPPER Function:
+
+Example: UPPER("Power Bi")
+----------------------------------------------------------------------
+LOWER Function:
+
+Example: LOWER ("Power Bi")
+----------------------------------------------------------------------
+VALUE Function:
+
+Example: VALUE ("10")
+----------------------------------------------------------------------
+Time intelligence Functions
+
+DATEADD Function:
+
+Example: VALUE ("10")
+----------------------------------------------------------------------
+LASTDATE Function:
+
+Example: LASTDATE ('SuperStoreUS-2015-'[Ship Date])
+---------------------------------------------------------------------
+NEXTDAY Function:
+
+Example: NEXTDAY ('SuperStoreUS-2015-'[Order Date])
+----------------------------------------------------------------------
+PREVIOUSMONTH Function:
+
+Example: PREVIOUSMONTH ('SuperStoreUS-2015-'[Order Date])
+----------------------------------------------------------------------
+TOTALMTD Function:
+
+Example: TOTALMTD(SUM('SuperStoreUS-2015-'[Profit]),'SuperStoreUS-2015-'[Order Date])
+----------------------------------------------------------------------
+FIRSTDATE Function:
+
+Example: FIRSTDATE ('Date'[Order Date])
+----------------------------------------------------------------------
+LASTDATE Function:
+
+Example: LASTDATE('Date'[Order Date])
+----------------------------------------------------------------------
+STARTOFYEAR Function:
+
+Example: STARTOFYEAR('Date'[Order Date])
+-----------------------------------------------------------------------
+DATESMTSD Function:
+
+Example: Calculate(Sum('SuperStoreUS-2015-'[Sales]),DATESMTD('SuperStoreUS-2015-'[Order Date]))
+------------------------------------------------------------------------
+DATESBETWEEN Function:
+
+Example: CALCULATE (
+    DISTINCTCOUNT('SuperStoreUS-2015-'[Customer ID]),  DATESBETWEEN(
+        'SuperStoreUS-2015-'[Order Date],   BLANK(),  
+        MAX('SuperStoreUS-2015-'[Order Date])  
+    )
+)
+------------------------------------------------------------------------
+2.Create measure Powrer BI using DAX Function:
+
+‘TotalSales = SUM('Dim-Sales'[Sales])
+------------------------------------------------------------------------
+3.Create a calculated column in Power BI using DAX
+
+Order Month= SWITCH (MONTH('SuperStoreUS-2015-'[Order Date]),1, "Jan", 2, "Feb", 3, "March", 4, "April", 5, "May", 6, "June", 7, "July", 8, "Aug", 9, "Sept", 10, "Oct", 11, "Nov", 12, "Dec", "Out of range"). 
+------------------------------------------------------------------------
+4.Create Calculated table in Power BI Desktop using Dax
+
+Date = SUMMARIZE ('SuperStoreUS-2015-','SuperStoreUS-2015-'[Order Date],'SuperStoreUS-2015-'[Order Month],'SuperStoreUS-2015-'[Month Number], "Total Sales", SUM('SuperStoreUS-2015-'[Sales])). 
+
+------------------------------------------------------------------------

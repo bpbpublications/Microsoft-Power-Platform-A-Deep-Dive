@@ -1,0 +1,160 @@
+1. Default formulas for each control that is used in the BrowseScreen:
+
+Refresh:
+OnSelect = Refresh ([@'IT Help Desk'])
+
+Sort:
+OnSelect = UpdateContext({SortDescending1: !SortDescending1})
+
+Add:
+OnSelect = NewForm(EditForm1); Navigate (EditScreen1, ScreenTransition.None)
+
+Search:
+Default = " "
+
+Next navigation icon:
+OnSelect = Select (Parent)
+
+Browse gallery:
+Items = SortByColumns(Filter ([@'IT Help Desk'], StartsWith(Title, TextSearchBox1.Text)), "Title", If(SortDescending1, Descending, Ascending))
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+2. Default formulas for each control that is used in the Detail screen:
+
+Detail form:
+Item = BrowseGallery1.Selected
+
+Delete icon:
+OnSelect = Remove ([@'IT Help Desk'], BrowseGallery1.Selected); If (IsEmpty(Errors([@'IT Help Desk'], BrowseGallery1.Selected)), Back())
+
+Edit icon:
+OnSelect = EditForm(EditForm1); Navigate(EditScreen1, ScreenTransition.None)
+
+Back Arrow icon:
+OnSelect = Navigate (BrowseScreen1, ScreenTransition.None)
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Default formulas for each control that is used in the Detail screen:
+
+Submit icon:
+OnSelect = SubmitForm(EditForm1)
+
+Cancel icon:
+OnSelect = ResetForm(EditForm1); Back()
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+4. Creating an app from a blank canvas app (build apps from scratch):
+
+Register screen:
+OnSelect = Patch ('Car Rental Services', Defaults ('Car Rental Services'), {Title:txtCarName.Text,'Person Name':txtRegistrant.Text, 'Person Email':txtEmail.Text, 'Mobile Number':Value(txtPhone.Text)}); Navigate ('Welcome Screen', ScreenTransition.Cover)
+
+Welcome screen:
+Text = "Registration Completed Successfully!!"
+OnSelect = Navigate ('Browse Screen',ScreenTransition.CoverRight)
+
+Browse screen:
+Reload:
+OnSelect = Refresh([@'Car Rental Services'])
+Add:
+OnSelect = NewForm(Form1); Navigate('Edit Screen', None)
+Next Arrow icon:
+OnSelect = Navigate ('Details Screen', ScreenTransition.Cover)
+
+Details screen:
+OnSelect = Navigate ([@'Edit Screen'], None)
+OnSelect = Remove ('Car Rental Services', TemplateGalleryList1.Selected); Back ();
+OnSelect = Navigate ('Browse Screen', ScreenTransition.Fade)
+
+Edit screen:
+SAVE:
+OnSelect = SubmitForm (Form1); Navigate ('Details Screen')
+CANCEL:
+OnSelect = ResetForm (Form1); Back ()
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+5. SharePoint list form validations
+
+Integer:
+Icon = If(IsMatch(DataCardValue19.Text, Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit),Check,Icon.Warning)
+Color = If(IsMatch(DataCardValue19.Text, Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit&Digit),Green,Red)
+
+Text:
+Required = true
+
+Date:
+Text = Coalesce(Parent.Error, If(!IsBlank(DataCardValue16.SelectedDate) &&(DataCardValue16.SelectedDate <= Today () || DataCardValue16.SelectedDate>=DateAdd (Today(), 7)), "Date must be greater than today and less than 7 days from today"), If (Weekday (DataCardValue16.SelectedDate, Monday) > 6,"Date should be a weekday"))
+
+E-mail:
+Icon = If(IsMatch(DataCardValue20.Text, Email), Check, Icon.Mail)
+Color = If(IsMatch(DataCardValue20.Text, Email), Green, Red)
+
+Zip code:
+Text = Coalesce(Parent.Error, If(!IsBlank(DataCardValue21.Text) && !IsMatch(DataCardValue21.Text, MultipleDigits),"No Decimals are allowed, Please enter only numbers!!"))
+
+Password:
+Icon = If(IsMatch(DataCardValue22.Text, "(?!^[0-9]\*$)(?!^[a-zA-Z]\*$)([a-zA-Z0-9]{8,10})"), Check, Icon.Lock)
+Color = If(IsMatch(DataCardValue22.Text, "(?!^[0-9]\*$)(?!^[a-zA-Z]\*$)([a-zA-Z0-9]{8,10})"), Green, Red)
+Mode = Password
+
+URL:
+Icon = If(IsMatch(DataCardValue23.Text,"http://linkedin.com/", BeginsWith)||IsMatch(DataCardValue23.Text,"https://linkedin.com/",BeginsWith),Check,Icon.Information)
+Color = If(IsMatch(DataCardValue23.Text,"http://linkedin.com/",BeginsWith)||IsMatch(DataCardValue23.Text,"https://linkedin.com/",BeginsWith),Green,Red)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+6. Working with Power Apps with multiple lists:
+
+OnSelect = Patch ('Ticket Booking Details', Defaults ('Ticket Booking Details'), {Title:txtSlNumber.Text, TicketID: Value(txtTicketID.Text), Flight:ddFlight.Selected, Date:dtDate.SelectedDate, Destination:ddDestination.Selected, AvailableClasses:rdAvailClasses.Selected}); Patch ('Traveller Details', Defaults ('Traveller Details'), {Title:txtTravellerName.Text, 'Contact Number': Value(txtContactNumber.Text), 'Email Address':txtEmailAddress.Text});
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+7. Dashboard using Power Apps example:
+
+Completed tasks:
+Items = SortByColumns (Filter ('Employee Tasks', 'Task Status'.Value = "Completed"), "Title")
+
+In-progress tasks:
+Items = SortByColumns (Filter ('Employee Tasks', 'Task Status'.Value = "In Progress"), "Title")
+
+All tasks:
+Items = 'Employee Tasks'
+
+Task gallery:
+Items = 'Employee Tasks'
+
+Task Data table:
+Items = 'Employee Tasks'
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+8. Leave request form using Power Apps:
+
+Dropdown control:
+Items = Choices ('Employee Leave Request'. 'Approval Status')
+
+Vertical gallery control:
+Items = Filter ('Employee Leave Request', 'Approval Status'.Value = ddStatus.Selected.Value && Author.Email = User( ).Email)
+
+Edit Form:
+OnSelect = SubmitForm(Form1);
+OnVisible = NewForm(Form1);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+9. PowerApps multilingual app:
+
+Items = MicrosoftTranslator.Languages()
+Items = ["en", "et", "fo", "fj", "fil"]
+OnStart = Set(language,"en")
+OnChange = Set(language,ddSelectLanguage.Selected.Code)
+Text = MicrosoftTranslator.Translate("Download complete Power Platform Development Training Course Content", language)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+10. PowerApps Barcode scanner:
+
+DataSource = 'Costume Library'
+Item = varRecord
+OnScan = Set(varRecord, LookUp('Costume Library', 'Costume Barcode' = BarcodeScanner1.Value)); If(IsBlank(varRecord), Notify ("Item not found", NotificationType.Error), ResetForm(Form1); EditForm(Form1))
+OnSelect = Select (BarcodeScanner1)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+

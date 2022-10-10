@@ -1,0 +1,26 @@
+1. Migrate Excel table to SharePoint list:
+
+addDays('1899-12-30',int(variables('VarDate')),'MM-dd-yyyy')
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Post Teams message right from SharePoint library:
+
+<p>There is a new file '@{triggerOutputs()?['body/{Name}']}' &nbsp;is uploaded in the SharePoint Document folder. 
+<br> 
+<br> 
+<a href= "@{variables('VarLink')}">Click here </a> to reach the file. 
+</p>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Uploading file in SharePoint using multiple condition:
+
+Name contains .docx  
+Name contains .pdf 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Working with Parse JSON in Power Automate
+
+{"Name": "@{triggerBody()['text']}", "Location": "@{triggerBody()['text_1']}","Age": "@{triggerBody()['number']}","Join Date": "@{triggerBody()['date']}"} 
+There is a new member @{body('Parse_JSON')?['Name']} has age @{body('Parse_JSON')?['Age']} will join @{body('Parse_JSON')?['Join Date']} in our company at @{body('Parse_JSON')?['Location']} location.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
