@@ -3,7 +3,7 @@
 Build data-driven business solutions with the Microsoft Power Platform
 
 This is the repository for [Microsoft Power Platform A Deep Dive
-](https://bpbonline.com/products/microsoft-power-platform-a-deep-dive?_pos=1&_sid=b2d259124&_ss=r&variant=42369614020808),published by BPB Publications. 
+](https://bpbonline.com/products/microsoft-power-platform-a-deep-dive),published by BPB Publications. 
 
 ## About the Book
 With "Microsoft's Power Platform A Deep Dive," you can learn more about how Microsoft's Power Platform creates and fosters opportunities for users to enhance their technical skills and boost their productivity. In a short amount of time and with minimal effort, readers of this book can create a wide range of practical and effective custom business applications, automated business processes, reports, dashboards, virtual bots, etc. 
